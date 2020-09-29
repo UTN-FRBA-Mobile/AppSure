@@ -8,5 +8,14 @@
         android:id="@+id/main_list"
         android:name="com.utn.appsure.fragment.MainListFragment"
         android:label="MainList"
-        tools:layout="@layout/fragment_main_list" />
+        tools:layout="@layout/fragment_main_list">
+        <action
+            android:id="@+id/action_main_list_to_invoice"
+            app:destination="@id/invoice" />
+    </fragment>
+    <fragment
+        android:id="@+id/invoice"
+        android:name="com.utn.appsure.fragment.InvoiceFragment"
+        android:label="Invoice"
+        tools:layout="@layout/fragment_invoice" />
 </navigation>
