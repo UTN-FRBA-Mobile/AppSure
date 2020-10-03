@@ -11,4 +11,8 @@ class MainListViewModel : ViewModel() {
     fun onFloatingButtonClick(v: View) {
         v.findNavController().navigate(R.id.action_main_list_to_invoice)
     }
+
+    fun onFloatingButtonCreatePolicyClick(v: View) {
+        v.findNavController().navigate(R.id.action_main_list_to_policy)
+    }
 }
