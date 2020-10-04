@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="12dp"
-            android:gravity="top|center"
+            android:gravity="center|top"
             android:text="@{viewmodel.createPolicyText}" />
 
         <EditText
@@ -28,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:gravity="fill_horizontal"
             android:hint="Email"
             android:inputType="textEmailAddress" />
 
@@ -38,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:gravity="fill_horizontal"
             android:hint="Nombre"
             android:inputType="text"
             android:selectAllOnFocus="true" />
@@ -48,7 +46,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="95dp"
-            android:gravity="left"
             android:hint="Apellido"
             android:inputType="text"
             android:selectAllOnFocus="true" />
@@ -110,7 +107,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="195dp"
-            android:gravity="fill_horizontal"
             android:hint="Localidad"
             android:inputType="text"
             android:selectAllOnFocus="true" />
@@ -120,7 +116,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="230dp"
-            android:gravity="fill_horizontal"
             android:hint="Provincia"
             android:inputType="text"
             android:selectAllOnFocus="true" />
@@ -129,7 +124,6 @@
             android:id="@+id/btnNextPage"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:gravity="center_horizontal|end"
             android:layout_marginTop="300dp"
             android:onClick="@{viewmodel::goToNextPage}"
             android:text="@{viewmodel.nextPageText}" />
