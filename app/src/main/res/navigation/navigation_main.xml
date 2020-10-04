@@ -8,30 +8,5 @@
         android:id="@+id/main_list"
         android:name="com.utn.appsure.fragment.MainListFragment"
         android:label="MainList"
-        tools:layout="@layout/fragment_main_list">
-        <action
-            android:id="@+id/action_main_list_to_invoice"
-            app:destination="@id/invoice"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_main_list_to_policy"
-            app:destination="@id/create_policy"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/invoice"
-        android:name="com.utn.appsure.fragment.InvoiceFragment"
-        android:label="Invoice"
-        tools:layout="@layout/fragment_invoice" />
-    <fragment
-        android:id="@+id/create_policy"
-        android:name="com.utn.appsure.fragment.CreatePolicyFragment"
-        android:label="Create Policy"
-        tools:layout="@layout/fragment_create_policy" />
+        tools:layout="@layout/fragment_main_list" />
 </navigation>
