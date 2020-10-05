@@ -7,3 +7,6 @@ Desde la pantalla principal podra acceder a generar nuevas polizas, carga de dat
 Una vez finalizado se consultara por el numero de poliza generado a una API externa.
 
 https://www.figma.com/file/17LjDLcXYAxl9vK9ZZAsn3/Front?node-id=0%3A1
+
+API
+https://mockapi.io/projects/5f78d3ae66d4960016c49fe6
