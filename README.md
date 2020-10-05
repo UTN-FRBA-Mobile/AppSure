@@ -1,5 +1,5 @@
 # AppSure
-AppSure
+Detalle
 
 Aplicacion destinada a gestor de seguros. 
 En la misma el gestor tendra en la pantalla principal las polizas generadas con los datos principales. Dentro de las mismas el detalle y el acceso a un mapa con la ubicacion de la misma.
