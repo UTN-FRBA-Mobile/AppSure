@@ -19,9 +19,6 @@ import kotlinx.android.synthetic.main.fragment_recognize_text.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-
-
-
 class RecognizeTextFragment : Fragment() {
 
     private lateinit var cameraExecutor: ExecutorService
