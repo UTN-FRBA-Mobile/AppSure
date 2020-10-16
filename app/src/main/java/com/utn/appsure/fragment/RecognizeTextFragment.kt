@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.utn.appsure.R
+import com.utn.appsure.utils.ImageAnalyzer
 import kotlinx.android.synthetic.main.fragment_recognize_text.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -25,6 +27,9 @@ import java.util.concurrent.Executors
 class RecognizeTextFragment : Fragment() {
 
     private lateinit var cameraExecutor: ExecutorService
+
+    //para ejecutar el codigo de leer texto en imagen
+    private var imageAnalyzer: ImageAnalysis? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -92,13 +97,22 @@ class RecognizeTextFragment : Fragment() {
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
+            //esta parte es para lo de leer texto, lo de IA
+            imageAnalyzer = ImageAnalysis.Builder()
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST) //STRATEGY_KEEP_ONLY_LATEST es para que sea mas performante, y no realice bloqueo
+                .build()
+                .also{
+                    it.setAnalyzer(cameraExecutor, ImageAnalyzer(this))
+                }
+
+
             try {
                 // Unbind use cases before rebinding
                 cameraProvider.unbindAll()
 
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview)
+                    this, cameraSelector, preview, imageAnalyzer)   // de esta maner ejecuta el codigo analyze del ImageAnalyzer
 
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
