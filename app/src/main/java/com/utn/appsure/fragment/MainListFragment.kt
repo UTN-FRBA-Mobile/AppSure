@@ -39,5 +39,6 @@ class MainListFragment : Fragment() {
                 )
             )
         }
+        viewModel.getPruebaData()
     }
 }
