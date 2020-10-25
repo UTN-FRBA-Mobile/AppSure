@@ -8,9 +8,9 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.utn.appsure.fragment.RecognizeTextFragment
 import kotlinx.android.synthetic.main.fragment_recognize_text.*
 
-class ImageAnalyzer (fragment: RecognizeTextFragment) : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallback()  {
+class ImageAnalyzer : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallback()  {
 
-    private val recognizeTextFragment : RecognizeTextFragment = fragment  // de esta manera puedo llamar al fragment para que muestre en pantalla el resultado del reconocimiento del texto. No se si es lindo hacer esto, pero funciona
+    var listener: ((String)->Unit)? = null //con esto puedo hacer el callback al RecognizeTextFragment
 
     @androidx.camera.core.ExperimentalGetImage  // esta linea es para que no tire error en imageProxy.image
     override fun analyze(imageProxy: ImageProxy) {
@@ -26,8 +26,14 @@ class ImageAnalyzer (fragment: RecognizeTextFragment) : ImageAnalysis.Analyzer, 
                     //visionText tiene el resultado del TextRecognition
                     val resultText = visionText.text    //visionText.text devuelve el resultado total en un string, es decir une todos los bloques con su propio texto en uno solo
 
-                    recognizeTextFragment.resultImageAnalizer.text = resultText   //supuestamente el resultado ya se puede ver en el layout
 
+                    if(!resultText.isNullOrEmpty()){
+                        if(resultText.length in 4..14){  //Esto es solo un detalle, para que me devuelva una cantidad coherente de letras que tiene una patente
+                            listener?.invoke(resultText)
+                        }
+                    }else{
+                        listener?.invoke("No se pudo leer") // ToDo: esto es solo para probar el callback en el emulador, luego borrarlo
+                    }
                 }
                 .addOnFailureListener { e ->
                     //TODO hacer algo con el error

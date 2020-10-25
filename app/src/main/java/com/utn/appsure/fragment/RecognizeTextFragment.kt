@@ -30,6 +30,7 @@ class RecognizeTextFragment : Fragment() {
 
     //para ejecutar el codigo de leer texto en imagen
     private var imageAnalyzer: ImageAnalysis? = null
+    private val recognizeText: ImageAnalyzer = ImageAnalyzer()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,10 +48,19 @@ class RecognizeTextFragment : Fragment() {
             startCamera()
         } else {
             ActivityCompat.requestPermissions(
-                this.requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+                this.requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        recognizeText.listener={text->
+            println("Lo que se pudo leer de la imagen es el siguiente texto:"+text) //ToDo: solo es para mostrar por consola, no deberia ir
+        }
+
     }
 
     override fun onDestroy() {
@@ -102,7 +112,7 @@ class RecognizeTextFragment : Fragment() {
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST) //STRATEGY_KEEP_ONLY_LATEST es para que sea mas performante, y no realice bloqueo
                 .build()
                 .also{
-                    it.setAnalyzer(cameraExecutor, ImageAnalyzer(this))
+                    it.setAnalyzer(cameraExecutor, recognizeText)
                 }
 
 
