@@ -28,11 +28,11 @@ class ImageAnalyzer : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallba
 
 
                     if(!resultText.isNullOrEmpty()){
-                        if(resultText.length in 4..14){  //Esto es solo un detalle, para que me devuelva una cantidad coherente de letras que tiene una patente
+                        if(resultText.length in 4..35){  //Esto es solo un detalle, para que me devuelva una cantidad "coherente" de letras que tiene una patente
                             listener?.invoke(resultText)
                         }
                     }else{
-                        listener?.invoke("No se pudo leer") // ToDo: esto es solo para probar el callback en el emulador, luego borrarlo
+                        listener?.invoke("No se pudo reconocer el texto") // ToDo: esto es solo para probar el callback en el emulador, luego borrarlo
                     }
                 }
                 .addOnFailureListener { e ->
