@@ -56,8 +56,8 @@ class RecognizeTextFragment : Fragment() {
         if (allPermissionsGranted()) {
             startCamera()
         } else {
-            ActivityCompat.requestPermissions(
-                this.requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            requestPermissions(
+                REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
             )
         }
 
@@ -86,9 +86,8 @@ class RecognizeTextFragment : Fragment() {
                 startCamera()
             } else {
                 Toast.makeText(this.context,
-                    "Permissions not granted by the user.",
+                    "Camera permissions not granted by the user.",
                     Toast.LENGTH_SHORT).show()
-
             }
         }
     }
