@@ -11,11 +11,11 @@ import java.io.IOException
 
 
 abstract class BaseService(val client: OkHttpClient) {
-    val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
-    lateinit var endpoint: String
+    private val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
+    var endpoint = ""
 
     @Throws(IOException::class)
-    fun post(json: String): String? {
+    protected open fun post(json: String): String? {
         val body: RequestBody = json.toRequestBody(JSON)
         val request: Request = Request.Builder()
             .url("${BuildConfig.BASE_URL}$endpoint")
@@ -26,7 +26,7 @@ abstract class BaseService(val client: OkHttpClient) {
     }
 
     @Throws(IOException::class)
-    fun get(): String? {
+    protected open fun get(): String? {
         val request: Request = Request.Builder()
             .url("${BuildConfig.BASE_URL}$endpoint")
             .build()

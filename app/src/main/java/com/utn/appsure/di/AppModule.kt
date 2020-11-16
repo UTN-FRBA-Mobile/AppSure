@@ -1,7 +1,7 @@
 package com.utn.appsure.di
 
-import com.utn.appsure.service.PruebaService
-import com.utn.appsure.usecase.PruebaUseCase
+import com.utn.appsure.service.PolicyService
+import com.utn.appsure.usecase.GetPoliciesUseCase
 import com.utn.appsure.viewmodel.*
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -15,6 +15,6 @@ val appModule = module {
     viewModel { CreatePolicyViewModel2() }
     viewModel { RecognizeTextViewModel() }
 
-    single { PruebaService(get()) }
-    single { PruebaUseCase(get()) }
+    single { PolicyService(get()) }
+    single { GetPoliciesUseCase(get()) }
 }

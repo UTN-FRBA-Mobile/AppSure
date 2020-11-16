@@ -2,14 +2,14 @@ package com.utn.appsure.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.utn.appsure.usecase.PruebaUseCase
+import com.utn.appsure.usecase.GetPoliciesUseCase
 
-class MainListViewModel(private val pruebaUseCase: PruebaUseCase) : ViewModel() {
+class MainListViewModel(private val policiesUseCase: GetPoliciesUseCase) : ViewModel() {
     var holiwis = MutableLiveData("HOLIWISSS")
 
     fun getPruebaData() {
-        pruebaUseCase.execute().observeForever {
-            holiwis.value = it
+        policiesUseCase.execute().observeForever {
+            holiwis.value = it.toString()
         }
     }
 }
