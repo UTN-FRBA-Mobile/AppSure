@@ -8,7 +8,7 @@ class MainListViewModel(private val policiesUseCase: GetPoliciesUseCase) : ViewM
     var holiwis = MutableLiveData("HOLIWISSS")
 
     fun getPruebaData() {
-        policiesUseCase.execute().observeForever {
+        policiesUseCase.execute {
             holiwis.value = it.toString()
         }
     }
