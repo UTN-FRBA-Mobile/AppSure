@@ -10,7 +10,6 @@ import org.koin.dsl.module
 val appModule = module {
     single { OkHttpClient() }
     viewModel { MainListViewModel(get()) }
-    viewModel { InvoiceViewModel() }
     viewModel { CreatePolicyViewModel() }
     viewModel { CreatePolicyViewModel2() }
     viewModel { RecognizeTextViewModel() }
