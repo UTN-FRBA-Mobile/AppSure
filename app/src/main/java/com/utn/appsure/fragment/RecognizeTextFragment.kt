@@ -23,9 +23,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-
-
-
 class RecognizeTextFragment : Fragment() {
 
     private val viewModel by viewModel<RecognizeTextViewModel>()
