@@ -1,51 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
 
-    <androidx.camera.view.PreviewView
-        android:id="@+id/viewFinder"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8"
-        />
+        <import type="android.view.View" />
 
+        <variable
+            name="viewmodel"
+            type="com.utn.appsure.viewmodel.RecognizeTextViewModel" />
 
+    </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:weightSum="10"
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lectura Patente"
-            android:layout_gravity="center_horizontal"
+
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Esperando lectura patente"
-            android:layout_gravity="center_horizontal"
-            />
 
-        <Button
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aceptar"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            />
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lectura Patente"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/resultImageAnalizer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Esperando lectura patente"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/recognize_text_resutl_style"
+                android:textStyle="italic"
+                android:text="@{viewmodel.resultRecognizeText}"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aceptar"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/recognize_text_button_accept"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
     </LinearLayout>
 
-
-</LinearLayout>
+</layout>

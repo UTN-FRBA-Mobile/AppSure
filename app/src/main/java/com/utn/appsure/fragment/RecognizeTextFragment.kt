@@ -9,26 +9,41 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.utn.appsure.R
+import com.utn.appsure.databinding.FragmentRecognizeTextBinding
+import com.utn.appsure.utils.ImageAnalyzer
+import com.utn.appsure.viewmodel.RecognizeTextViewModel
 import kotlinx.android.synthetic.main.fragment_recognize_text.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class RecognizeTextFragment : Fragment() {
 
+    private val viewModel by viewModel<RecognizeTextViewModel>()
+    private lateinit var binding: FragmentRecognizeTextBinding
+
+
     private lateinit var cameraExecutor: ExecutorService
+    //para ejecutar el codigo de leer texto en imagen
+    private var imageAnalyzer: ImageAnalysis? = null
+    private val recognizeText: ImageAnalyzer = ImageAnalyzer()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_recognize_text, container, false)
+        super.onCreateView(inflater, container, savedInstanceState)
+        binding = FragmentRecognizeTextBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewmodel = viewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,11 +53,21 @@ class RecognizeTextFragment : Fragment() {
         if (allPermissionsGranted()) {
             startCamera()
         } else {
-            ActivityCompat.requestPermissions(
-                this.requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+            requestPermissions(
+                REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        recognizeText.listener={text->
+            println("Lo que se pudo leer de la imagen es el siguiente texto: "+text) //ToDo: solo es para mostrar por consola, no deberia ir
+            viewModel.changeResult(text)
+        }
+
     }
 
     override fun onDestroy() {
@@ -58,9 +83,8 @@ class RecognizeTextFragment : Fragment() {
                 startCamera()
             } else {
                 Toast.makeText(this.context,
-                    "Permissions not granted by the user.",
+                    "Camera permissions not granted by the user.",
                     Toast.LENGTH_SHORT).show()
-
             }
         }
     }
@@ -89,13 +113,22 @@ class RecognizeTextFragment : Fragment() {
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
+            //esta parte es para lo de leer texto, lo de IA
+            imageAnalyzer = ImageAnalysis.Builder()
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST) //STRATEGY_KEEP_ONLY_LATEST es para que sea mas performante, y no realice bloqueo
+                .build()
+                .also{
+                    it.setAnalyzer(cameraExecutor, recognizeText)
+                }
+
+
             try {
                 // Unbind use cases before rebinding
                 cameraProvider.unbindAll()
 
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview)
+                    this, cameraSelector, preview, imageAnalyzer)   // de esta maner ejecuta el codigo analyze del ImageAnalyzer
 
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
