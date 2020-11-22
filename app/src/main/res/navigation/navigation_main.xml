@@ -8,5 +8,18 @@
         android:id="@+id/main_list"
         android:name="com.utn.appsure.fragment.MainListFragment"
         android:label="MainList"
-        tools:layout="@layout/fragment_main_list" />
+        tools:layout="@layout/fragment_main_list">
+        <action
+            android:id="@+id/action_go_to_map"
+            app:destination="@id/map"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/map"
+        android:name="com.utn.appsure.fragment.MapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_map" />
 </navigation>
