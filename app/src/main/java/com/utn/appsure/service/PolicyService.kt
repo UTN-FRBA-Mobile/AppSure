@@ -5,9 +5,12 @@ import com.utn.appsure.model.Policy
 import okhttp3.OkHttpClient
 
 class PolicyService(client: OkHttpClient) : BaseService(client) {
-    fun getPolicies(): Array<Policy> {
+    fun getPolicies(): Array<Policy>? {
         endpoint = "/policy"
         val result = super.get()
-        return Gson().fromJson(result, Array<Policy>::class.java)
+        return if (!result.isNullOrEmpty()) Gson().fromJson(
+            result,
+            Array<Policy>::class.java
+        ) else null
     }
 }

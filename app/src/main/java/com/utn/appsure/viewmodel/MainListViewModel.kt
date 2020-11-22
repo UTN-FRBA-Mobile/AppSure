@@ -1,5 +1,6 @@
 package com.utn.appsure.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.utn.appsure.usecase.GetPoliciesUseCase
@@ -9,7 +10,7 @@ class MainListViewModel(private val policiesUseCase: GetPoliciesUseCase) : ViewM
 
     fun getPruebaData() {
         policiesUseCase.execute {
-            holiwis.value = it.toString()
+            Log.i("policies", it?.contentDeepToString())
         }
     }
 }

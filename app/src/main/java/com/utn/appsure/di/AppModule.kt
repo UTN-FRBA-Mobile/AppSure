@@ -1,19 +1,27 @@
 package com.utn.appsure.di
 
+import com.utn.appsure.db.AppSureDatabase
+import com.utn.appsure.db.PolicyRepository
 import com.utn.appsure.service.PolicyService
 import com.utn.appsure.usecase.GetPoliciesUseCase
-import com.utn.appsure.viewmodel.*
+import com.utn.appsure.viewmodel.CreatePolicyViewModel
+import com.utn.appsure.viewmodel.CreatePolicyViewModel2
+import com.utn.appsure.viewmodel.MainListViewModel
+import com.utn.appsure.viewmodel.RecognizeTextViewModel
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
     single { OkHttpClient() }
+    single { AppSureDatabase.getAppDataBase(androidContext()) }
     viewModel { MainListViewModel(get()) }
     viewModel { CreatePolicyViewModel() }
     viewModel { CreatePolicyViewModel2() }
     viewModel { RecognizeTextViewModel() }
 
     single { PolicyService(get()) }
-    single { GetPoliciesUseCase(get()) }
+    single { PolicyRepository(get()) }
+    single { GetPoliciesUseCase(get(), get()) }
 }

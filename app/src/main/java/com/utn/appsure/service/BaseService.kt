@@ -21,8 +21,12 @@ abstract class BaseService(val client: OkHttpClient) {
             .url("${BuildConfig.BASE_URL}$endpoint")
             .post(body)
             .build()
-        val response = client.newCall(request).execute()
-        return if (response.isSuccessful) response.body?.string() else ""
+        return try {
+            val response = client.newCall(request).execute()
+            if (response.isSuccessful) response.body?.string() else ""
+        } catch (e: Exception) {
+            ""
+        }
     }
 
     @Throws(IOException::class)
@@ -30,7 +34,11 @@ abstract class BaseService(val client: OkHttpClient) {
         val request: Request = Request.Builder()
             .url("${BuildConfig.BASE_URL}$endpoint")
             .build()
-        val response = client.newCall(request).execute()
-        return if (response.isSuccessful) response.body?.string() else ""
+        return try {
+            val response = client.newCall(request).execute()
+            if (response.isSuccessful) response.body?.string() else ""
+        } catch (e: Exception) {
+            ""
+        }
     }
 }

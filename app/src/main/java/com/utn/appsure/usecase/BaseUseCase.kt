@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 
 abstract class BaseUseCase<T> {
 
-    fun execute(callback: (T) -> Unit) {
+    fun execute(callback: (T?) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             getData(callback)
         }
@@ -18,5 +18,5 @@ abstract class BaseUseCase<T> {
         }
     }
 
-    abstract fun getData(callback: (T) -> Unit)
+    abstract fun getData(callback: (T?) -> Unit)
 }

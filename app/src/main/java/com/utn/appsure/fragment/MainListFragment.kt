@@ -12,13 +12,20 @@ import com.utn.appsure.R
 import com.utn.appsure.activity.PolicyActivity
 import com.utn.appsure.adapter.PolicyAdapter
 import com.utn.appsure.model.PolicyApi
+import com.utn.appsure.viewmodel.MainListViewModel
 import kotlinx.android.synthetic.main.fragment_main_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainListFragment : Fragment() {
 
+    private val viewModel by viewModel<MainListViewModel>()
     private lateinit var recyclerView: RecyclerView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_main_list, container, false)
     }
 
@@ -43,7 +50,6 @@ class MainListFragment : Fragment() {
                 )
             )
         }
-
-        //viewModel.getPruebaData()
+        viewModel.getPruebaData()
     }
 }
