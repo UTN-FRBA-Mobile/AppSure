@@ -1,13 +1,13 @@
-package com.utn.appsure.model;
+package com.utn.appsure.adapter;
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.utn.appsure.R
+import com.utn.appsure.model.Policy
 import kotlinx.android.synthetic.main.view_listitem_policy.view.*
 
 class PolicyAdapter(private val myDataset: MutableList<Policy>):
@@ -21,7 +21,7 @@ class PolicyAdapter(private val myDataset: MutableList<Policy>):
         return VIEWTYPE_POLICY
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PolicyAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view: View = if(viewType == VIEWTYPE_POLICY)
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.view_listitem_policy, parent, false)

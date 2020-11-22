@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.utn.appsure.R
 import com.utn.appsure.activity.PolicyActivity
-import com.utn.appsure.model.PolicyAdapter
+import com.utn.appsure.adapter.PolicyAdapter
 import com.utn.appsure.model.PolicyApi
 import kotlinx.android.synthetic.main.fragment_main_list.*
 
