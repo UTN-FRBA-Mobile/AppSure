@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ import com.utn.appsure.adapter.PolicyAdapter
 import com.utn.appsure.model.PolicyApi
 import com.utn.appsure.viewmodel.MainListViewModel
 import kotlinx.android.synthetic.main.fragment_main_list.*
+import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainListFragment : Fragment() {
@@ -36,10 +38,8 @@ class MainListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val myDataset = PolicyApi().getPolicies()
-
         val viewManager = LinearLayoutManager(this.context)
-        val viewAdapter = PolicyAdapter(myDataset)
+        val viewAdapter = PolicyAdapter()
 
         recyclerView = my_recycler_view.apply {
             layoutManager = viewManager
@@ -54,7 +54,10 @@ class MainListFragment : Fragment() {
                 )
             )
         }
-        viewModel.getPruebaData()
+        viewModel.policies.observe(viewLifecycleOwner, Observer {
+            viewAdapter.myDataset = it
+        })
+        viewModel.getPolicies()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

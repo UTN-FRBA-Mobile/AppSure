@@ -10,8 +10,13 @@ import com.utn.appsure.R
 import com.utn.appsure.model.Policy
 import kotlinx.android.synthetic.main.view_listitem_policy.view.*
 
-class PolicyAdapter(private val myDataset: MutableList<Policy>):
-    RecyclerView.Adapter<PolicyAdapter.MyViewHolder>(){
+class PolicyAdapter(): RecyclerView.Adapter<PolicyAdapter.MyViewHolder>(){
+
+    var myDataset: List<Policy> = listOf()
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
 
     private val VIEWTYPE_POLICY: Int = 1
 

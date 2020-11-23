@@ -3,14 +3,13 @@ package com.utn.appsure.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.utn.appsure.model.Policy
 import com.utn.appsure.usecase.GetPoliciesUseCase
 
 class MainListViewModel(private val policiesUseCase: GetPoliciesUseCase) : ViewModel() {
-    var holiwis = MutableLiveData("HOLIWISSS")
+    val policies = MutableLiveData<List<Policy>>()
 
-    fun getPruebaData() {
-        policiesUseCase.execute {
-            Log.i("policies", it?.contentDeepToString())
-        }
+    fun getPolicies() {
+        policiesUseCase.execute { policies.value = it?.toList() ?: listOf() }
     }
 }
