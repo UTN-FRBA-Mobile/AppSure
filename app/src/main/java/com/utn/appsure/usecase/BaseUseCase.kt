@@ -6,11 +6,12 @@ import kotlinx.coroutines.launch
 
 abstract class BaseUseCase<T> {
 
-    fun execute(callback: (T?) -> Unit) {
+    fun execute(value: Any?=null, callback: (T?) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
-            getData(callback)
+            getData(value, callback)
         }
     }
+
 
     protected fun onUiThread(block: () -> Unit) {
         CoroutineScope(Dispatchers.Main).launch {
@@ -18,5 +19,5 @@ abstract class BaseUseCase<T> {
         }
     }
 
-    abstract fun getData(callback: (T?) -> Unit)
+    abstract fun getData(value: Any?=null, callback: (T?) -> Unit)
 }

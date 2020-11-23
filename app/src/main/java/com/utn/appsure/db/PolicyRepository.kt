@@ -10,4 +10,8 @@ class PolicyRepository(db: AppSureDatabase) : BaseRepository(db) {
     fun getAll(): List<Policy> {
         return db.policyDao().getAll()
     }
+
+    fun getById(id:String): Policy {
+        return db.policyDao().getById(id)
+    }
 }
