@@ -11,7 +11,9 @@ class Policy(
     val model: String,
     val year: Int,
     val colour: String,
-    val poster: Int?
+    val poster: Int?,
+    val lat: Double,
+    val lon: Double
 ) {
     override fun toString(): String {
         return "Policy(license='$license', brand='$brand', model='$model', year=$year, colour='$colour', poster=$poster)"
