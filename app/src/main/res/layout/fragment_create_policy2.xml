@@ -98,7 +98,6 @@
                 android:layout_height="48dp"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorPrimary"
-                android:onClick="@{viewmodel::generatePolicy}"
                 android:text="Crear Póliza"
                 android:textColor="#FFFFFF" />
 

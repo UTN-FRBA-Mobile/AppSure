@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.utn.appsure.databinding.FragmentCreatePolicy2Binding
@@ -27,6 +30,38 @@ class CreatePolicyFragment2 : Fragment() {
         viewModel.finish.observe(viewLifecycleOwner, Observer {
             if (it) activity?.finish()
         })
+        binding.btnGeneratePolicy.setOnClickListener { createBiometricPrompt() }
         return binding.root
+    }
+
+    private fun createBiometricPrompt() {
+        val biometricPrompt = activity?.let {
+            BiometricPrompt(
+                it, ContextCompat.getMainExecutor(it),
+                object : BiometricPrompt.AuthenticationCallback() {
+
+                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                        super.onAuthenticationSucceeded(result)
+                        viewModel.generatePolicy(it)
+                    }
+
+                    override fun onAuthenticationFailed() {
+                        super.onAuthenticationFailed()
+                        Toast.makeText(
+                            context, "Falló la autenticación :(",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                })
+        }
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Verifique su identidad")
+            .setSubtitle("Para crear la póliza es necesario que ingrese su huella")
+            .setNegativeButtonText("Cancelar")
+            .build()
+
+        biometricPrompt?.authenticate(promptInfo)
     }
 }

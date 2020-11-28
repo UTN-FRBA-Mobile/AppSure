@@ -1,7 +1,7 @@
 package com.utn.appsure.viewmodel
 
 import android.app.AlertDialog
-import android.view.View
+import android.content.Context
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +17,7 @@ class CreatePolicyViewModel2(private val createPolicyUseCase: CreatePolicyUseCas
     val colour = ObservableField<String>()
     val finish = MutableLiveData(false)
 
-    fun generatePolicy(v: View) {
+    fun generatePolicy(c: Context) {
         createPolicyUseCase.execute(
             Policy(
                 patent.get() ?: "",
@@ -27,7 +27,7 @@ class CreatePolicyViewModel2(private val createPolicyUseCase: CreatePolicyUseCas
                 colour.get() ?: "", 0, 0.0, 0.0
             )
         ) {
-            val builder = AlertDialog.Builder(v.context).setCancelable(false)
+            val builder = AlertDialog.Builder(c).setCancelable(false)
             it?.let {
                 builder
                     .setTitle("Éxito")
@@ -42,5 +42,4 @@ class CreatePolicyViewModel2(private val createPolicyUseCase: CreatePolicyUseCas
                 .show()
         }
     }
-
 }
