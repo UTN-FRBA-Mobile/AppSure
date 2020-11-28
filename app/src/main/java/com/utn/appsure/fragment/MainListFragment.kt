@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.utn.appsure.R
 import com.utn.appsure.activity.PolicyActivity
 import com.utn.appsure.adapter.PolicyAdapter
-import com.utn.appsure.model.PolicyApi
 import com.utn.appsure.viewmodel.MainListViewModel
 import kotlinx.android.synthetic.main.fragment_main_list.*
-import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainListFragment : Fragment() {
@@ -57,6 +55,10 @@ class MainListFragment : Fragment() {
         viewModel.policies.observe(viewLifecycleOwner, Observer {
             viewAdapter.myDataset = it
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
         viewModel.getPolicies()
     }
 

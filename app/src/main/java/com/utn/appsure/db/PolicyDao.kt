@@ -15,5 +15,8 @@ interface PolicyDao {
     fun insertAll(vararg policies: Policy)
 
     @Query("SELECT * FROM policy where license=:id limit 1")
-    fun getById(id:String): Policy
+    fun getById(id: String): Policy
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(policy: Policy)
 }

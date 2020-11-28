@@ -1,17 +1,21 @@
 package com.utn.appsure.usecase
 
-import android.util.Log
+import com.utn.appsure.db.PolicyRepository
 import com.utn.appsure.model.Policy
 import com.utn.appsure.model.PolicyValue
 import com.utn.appsure.service.PolicyService
 
-class CreatePolicyUseCase (
-    private val policyService: PolicyService
+class CreatePolicyUseCase(
+    private val policyService: PolicyService,
+    private val policyRepository: PolicyRepository
 ) : BaseUseCase<PolicyValue>() {
     override fun getData(value: Any?, callback: (PolicyValue?) -> Unit) {
-        Log.i("prueba create policy", value.toString())
         val result = policyService.postPolicy(value as Policy)
-        Log.i("prueba create policy", result.toString())
-        onUiThread { callback(result) }
+        result?.let {
+            policyRepository.insert(value)
+            onUiThread { callback(result) }
+        } ?: run {
+            onUiThread { callback(null) }
+        }
     }
 }

@@ -23,5 +23,5 @@ val appModule = module {
     single { PolicyService(get()) }
     single { PolicyRepository(get()) }
     single { GetPoliciesUseCase(get(), get()) }
-    single { CreatePolicyUseCase(get()) }
+    single { CreatePolicyUseCase(get(), get()) }
 }
