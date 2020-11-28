@@ -77,7 +77,6 @@ class MainListFragment () : Fragment(), PolicyAdapter.OnPolicyItemClickListener 
         }
     }
 
-    @SuppressLint("ResourceType")
     override fun onItemClick(item: Policy, position: Int) {
         findNavController(this).navigate(R.id.action_go_to_policy_detail)
     }
