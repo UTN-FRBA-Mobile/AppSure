@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.utn.appsure.R
 import com.utn.appsure.databinding.FragmentPolicyDetailBinding
+import com.utn.appsure.viewmodel.MainListViewModel
 import com.utn.appsure.viewmodel.PolicyDetailViewModel
 import kotlinx.android.synthetic.main.fragment_map.*
+import kotlinx.android.synthetic.main.fragment_policy_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PolicyDetailFragment : Fragment() {
@@ -25,12 +27,11 @@ class PolicyDetailFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
-/*        viewModel.policies.observe(viewLifecycleOwner, Observer {
-            test_label.text = it?.joinToString()
-        })
-        viewModel.getPolicies()
-  */  }
+
+
+        ""
+    }
 
 }

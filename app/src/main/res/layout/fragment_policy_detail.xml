@@ -164,7 +164,7 @@
                 android:selectAllOnFocus="true" />
 
             <TextView
-                android:id="@+id/txtLicense"
+                android:id="@+id/policy_license"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
