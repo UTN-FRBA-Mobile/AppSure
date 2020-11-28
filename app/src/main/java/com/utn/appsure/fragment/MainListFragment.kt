@@ -1,6 +1,5 @@
 package com.utn.appsure.fragment
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -80,7 +79,7 @@ class MainListFragment () : Fragment(), PolicyAdapter.OnPolicyItemClickListener 
     }
 
     override fun onItemClick(item: Policy, position: Int) {
-        policyDetailViewModel.policyDetail = item
+
         findNavController(this).navigate(R.id.action_go_to_policy_detail)
 
     }
