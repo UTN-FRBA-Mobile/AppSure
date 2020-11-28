@@ -11,97 +11,99 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/label_test"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="12dp"
-            android:gravity="top|center"
-            android:text="@{viewmodel.createPolicyText}" />
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/txtPatent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="12dp"
             android:hint="Patente"
-            android:text="@={viewmodel.patent}"
-            android:inputType="text" />
+            android:inputType="text"
+            android:text="@={viewmodel.patent}" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="60dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
             <EditText
                 android:id="@+id/txtBrand"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="start"
                 android:hint="Marca"
-                android:text="@={viewmodel.brand}"
                 android:inputType="text"
-                android:selectAllOnFocus="true" />
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.brand}" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="95dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
             <EditText
                 android:id="@+id/txtModel"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="start"
-                android:text="@={viewmodel.model}"
                 android:hint="Modelo"
                 android:inputType="text"
-                android:selectAllOnFocus="true" />
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.model}" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="130dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
             <EditText
                 android:id="@+id/txtYear"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="start"
-                android:text="@={viewmodel.year}"
                 android:hint="Año"
                 android:inputType="number"
-                android:selectAllOnFocus="true" />
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.year}" />
 
             <EditText
                 android:id="@+id/txtColour"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@={viewmodel.colour}"
+                android:layout_weight="1"
                 android:hint="Color"
                 android:inputType="text"
-                android:selectAllOnFocus="true" />
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.colour}" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnGeneratePolicy"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="200dp"
-            android:gravity="center"
-            android:onClick="@{viewmodel::generatePolicy}"
-            android:text="@{viewmodel.generatePolicy}" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/btnGeneratePolicy"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorPrimary"
+                android:onClick="@{viewmodel::generatePolicy}"
+                android:text="Crear Póliza"
+                android:textColor="#FFFFFF" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </layout>

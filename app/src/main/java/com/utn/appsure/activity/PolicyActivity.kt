@@ -8,5 +8,6 @@ class PolicyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_policy)
+        title = "Crear póliza"
     }
 }

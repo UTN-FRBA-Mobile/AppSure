@@ -11,23 +11,17 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/label_test"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="12dp"
-            android:gravity="center|top"
-            android:text="@{viewmodel.createPolicyText}" />
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="12dp"
             android:hint="Email"
             android:inputType="textEmailAddress" />
 
@@ -36,7 +30,7 @@
             android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="12dp"
             android:hint="Nombre"
             android:inputType="text"
             android:selectAllOnFocus="true" />
@@ -45,21 +39,21 @@
             android:id="@+id/txtLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="12dp"
             android:hint="Apellido"
             android:inputType="text"
             android:selectAllOnFocus="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="130dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
             <EditText
                 android:id="@+id/txtDNI"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="start"
                 android:hint="DNI"
                 android:inputType="number"
@@ -68,8 +62,8 @@
             <EditText
                 android:id="@+id/txtCP"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:hint="Código postal"
                 android:inputType="number"
@@ -78,14 +72,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="165dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
             <EditText
                 android:id="@+id/txtStreet"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="start"
                 android:hint="Calle"
                 android:inputType="text"
@@ -94,8 +88,8 @@
             <EditText
                 android:id="@+id/txtStreetNumber"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:hint="Altura"
                 android:inputType="number"
@@ -106,7 +100,7 @@
             android:id="@+id/txtLocalidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="195dp"
+            android:layout_marginTop="12dp"
             android:hint="Localidad"
             android:inputType="text"
             android:selectAllOnFocus="true" />
@@ -115,20 +109,28 @@
             android:id="@+id/txtProvince"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="230dp"
+            android:layout_marginTop="12dp"
             android:hint="Provincia"
             android:inputType="text"
             android:selectAllOnFocus="true" />
 
-        <Button
-            android:id="@+id/btnNextPage"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="300dp"
-            android:gravity="center"
-            android:onClick="@{viewmodel::goToNextPage}"
-            android:text="@{viewmodel.nextPageText}" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/btnNextPage"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorPrimary"
+                android:onClick="@{viewmodel::goToNextPage}"
+                android:text="Siguiente"
+                android:textColor="#FFFFFF" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </layout>
