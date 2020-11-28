@@ -15,6 +15,7 @@ import com.utn.appsure.adapter.PolicyAdapter
 import com.utn.appsure.model.Policy
 import com.utn.appsure.utils.TopSpacingItemDecoration
 import com.utn.appsure.viewmodel.MainListViewModel
+import com.utn.appsure.viewmodel.PolicyDetailViewModel
 import kotlinx.android.synthetic.main.fragment_main_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,6 +23,7 @@ class MainListFragment () : Fragment(), PolicyAdapter.OnPolicyItemClickListener 
 
     private val viewModel by viewModel<MainListViewModel>()
     private lateinit var recyclerView: RecyclerView
+    private val policyDetailViewModel by viewModel<PolicyDetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +80,8 @@ class MainListFragment () : Fragment(), PolicyAdapter.OnPolicyItemClickListener 
     }
 
     override fun onItemClick(item: Policy, position: Int) {
+        policyDetailViewModel.policyDetail = item
         findNavController(this).navigate(R.id.action_go_to_policy_detail)
+
     }
 }

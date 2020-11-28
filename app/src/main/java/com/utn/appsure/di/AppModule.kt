@@ -18,6 +18,7 @@ val appModule = module {
     viewModel { CreatePolicyViewModel2() }
     viewModel { RecognizeTextViewModel() }
     viewModel { MapViewModel(get()) }
+    viewModel { PolicyDetailViewModel() }
 
     single { PolicyService(get()) }
     single { PolicyRepository(get()) }
