@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.utn.appsure.viewmodel.PolicyDetailViewModel" />
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/label_test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:gravity="center|top"/>
+
+
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Email" />
+
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Nombre"
+            android:selectAllOnFocus="true" />
+
+        <TextView
+            android:id="@+id/txtLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="95dp"
+            android:text="Apellido"
+            android:selectAllOnFocus="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="130dp">
+
+            <TextView
+                android:id="@+id/txtDNI"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="DNI"
+                android:selectAllOnFocus="true" />
+
+            <TextView
+                android:id="@+id/txtCP"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="Código postal"
+                android:selectAllOnFocus="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="165dp">
+
+            <TextView
+                android:id="@+id/txtStreet"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Calle"
+                android:selectAllOnFocus="true" />
+
+            <TextView
+                android:id="@+id/txtStreetNumber"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="Altura"
+                android:selectAllOnFocus="true" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtLocalidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="195dp"
+            android:text="Localidad"
+            android:selectAllOnFocus="true" />
+
+        <TextView
+            android:id="@+id/txtProvince"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="230dp"
+            android:text="Provincia"
+            android:selectAllOnFocus="true" />
+
+        <TextView
+            android:id="@+id/txtMarca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="265dp"
+            android:text="Marca"
+            android:selectAllOnFocus="true" />
+
+        <TextView
+            android:id="@+id/txtModelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:text="Modelo"
+            android:selectAllOnFocus="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="335dp">
+
+            <TextView
+                android:id="@+id/txtAnio"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Año"
+                android:selectAllOnFocus="true" />
+
+            <TextView
+                android:id="@+id/txtColor"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="Color"
+                android:selectAllOnFocus="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="370dp">
+
+            <TextView
+                android:id="@+id/txtPatente"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Patente"
+                android:selectAllOnFocus="true" />
+
+            <TextView
+                android:id="@+id/txtLicense"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="Nro Poliza"
+                android:selectAllOnFocus="true" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

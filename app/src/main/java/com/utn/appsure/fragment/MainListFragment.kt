@@ -1,5 +1,6 @@
 package com.utn.appsure.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -11,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.utn.appsure.R
 import com.utn.appsure.activity.PolicyActivity
 import com.utn.appsure.adapter.PolicyAdapter
-import com.utn.appsure.model.PolicyApi
+import com.utn.appsure.model.Policy
+import com.utn.appsure.utils.TopSpacingItemDecoration
 import com.utn.appsure.viewmodel.MainListViewModel
 import kotlinx.android.synthetic.main.fragment_main_list.*
-import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainListFragment : Fragment() {
+class MainListFragment () : Fragment(), PolicyAdapter.OnPolicyItemClickListener {
 
     private val viewModel by viewModel<MainListViewModel>()
     private lateinit var recyclerView: RecyclerView
@@ -39,10 +40,12 @@ class MainListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewManager = LinearLayoutManager(this.context)
-        val viewAdapter = PolicyAdapter()
+        val viewAdapter = PolicyAdapter(this)
 
         recyclerView = my_recycler_view.apply {
             layoutManager = viewManager
+            val topSpacingItemDecoration = TopSpacingItemDecoration(20)
+            addItemDecoration(topSpacingItemDecoration)
             adapter = viewAdapter
         }
 
@@ -72,5 +75,10 @@ class MainListFragment : Fragment() {
         } else {
             super.onOptionsItemSelected(item)
         }
+    }
+
+    @SuppressLint("ResourceType")
+    override fun onItemClick(item: Policy, position: Int) {
+        findNavController(this).navigate(R.id.action_go_to_policy_detail)
     }
 }

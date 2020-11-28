@@ -7,10 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.utn.appsure.R
+import com.utn.appsure.fragment.MainListFragment
 import com.utn.appsure.model.Policy
 import kotlinx.android.synthetic.main.view_listitem_policy.view.*
 
-class PolicyAdapter(): RecyclerView.Adapter<PolicyAdapter.MyViewHolder>(){
+class PolicyAdapter(var clickListener: OnPolicyItemClickListener) : RecyclerView.Adapter<PolicyAdapter.MyViewHolder>(){
+
 
     var myDataset: List<Policy> = listOf()
     set(value) {
@@ -39,6 +41,8 @@ class PolicyAdapter(): RecyclerView.Adapter<PolicyAdapter.MyViewHolder>(){
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bindPolicy(myDataset[position])
+
+        holder.initialize(myDataset.get(position),clickListener)
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -50,6 +54,18 @@ class PolicyAdapter(): RecyclerView.Adapter<PolicyAdapter.MyViewHolder>(){
             if(policy.poster != null)
                 viewPolicyPoster!!.setImageResource(policy.poster)
         }
+
+        fun initialize (item: Policy,action: OnPolicyItemClickListener){
+            viewPolicyLicense.text = item.license
+
+            itemView.setOnClickListener{
+                action.onItemClick(item,adapterPosition)
+            }
+        }
+    }
+
+    interface OnPolicyItemClickListener{
+        fun onItemClick(item : Policy, position: Int)
     }
 
 }
