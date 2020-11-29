@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.utn.appsure.databinding.FragmentPolicyDetailBinding
 import com.utn.appsure.viewmodel.PolicyDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
