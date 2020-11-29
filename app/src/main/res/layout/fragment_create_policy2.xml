@@ -36,7 +36,9 @@
                 android:id="@+id/btnRcognizeText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/celular_escaneando_patente"/>
+                android:src="@drawable/escaneando_patente"
+                android:tooltipText="Escanear patente"
+                android:background="@drawable/recognize_text_button_start"/>
 
         </LinearLayout>
 

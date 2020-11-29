@@ -30,7 +30,7 @@ class ImageAnalyzer : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallba
                             listener?.invoke(resultText)
                         }
                     }else{
-                        listener?.invoke("No se pudo reconocer el texto") // ToDo: esto es solo para probar el callback en el emulador, luego borrarlo
+                       // listener?.invoke("No se pudo reconocer el texto") //esto es solo para probar el callback en el emulador, para que arroje un resultado aunque no se pueda leer un texto
                     }
                 }
                 .addOnFailureListener { e ->
