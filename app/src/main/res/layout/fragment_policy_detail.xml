@@ -37,9 +37,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Datos"
+                    android:textColor="#000000"
                     android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -58,9 +58,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:textSize="20sp"
-            android:hint="Patente "
-            android:text="@={viewmodel.patent}" />
+            android:hint="Patente"
+            android:text="@{viewmodel.patent}"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,10 +73,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start"
-                android:textSize="20sp"
                 android:hint="Marca"
                 android:selectAllOnFocus="true"
-                android:text="@={viewmodel.brand}" />
+                android:text="@{viewmodel.brand}"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,10 +90,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start"
-                android:textSize="20sp"
                 android:hint="Modelo"
                 android:selectAllOnFocus="true"
-                android:text="@={viewmodel.model}" />
+                android:text="@{viewmodel.model}"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,20 +107,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start"
-                android:textSize="20sp"
                 android:hint="Año"
                 android:selectAllOnFocus="true"
-                android:text="@={viewmodel.year}" />
+                android:text="@{viewmodel.year}"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtColour"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="20sp"
                 android:hint="Color"
                 android:selectAllOnFocus="true"
-                android:text="@={viewmodel.colour}" />
+                android:text="@{viewmodel.colour}"
+                android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>

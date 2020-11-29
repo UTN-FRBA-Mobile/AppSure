@@ -19,7 +19,6 @@ class PolicyDetailViewModel(private var policyUseCase: GetPolicyUseCase) : ViewM
             model = ObservableField(it?.model.toString())
             year = ObservableField(it?.year.toString())
             colour = ObservableField(it?.colour.toString())
-
         }
 
     }
