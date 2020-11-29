@@ -18,7 +18,6 @@ class PolicyDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         license = arguments?.getString("license")
-        Log.i("uesa", license)
     }
 
     override fun onCreateView(
