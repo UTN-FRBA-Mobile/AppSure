@@ -22,23 +22,5 @@
         android:id="@+id/policyPage2"
         android:name="com.utn.appsure.fragment.CreatePolicyFragment2"
         android:label="Create Policy page 2"
-        tools:layout="@layout/fragment_create_policy2" >
-        <action
-            android:id="@+id/action_go_to_RecognizeText"
-            app:destination="@id/recognizeText"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/recognizeText"
-        android:name="com.utn.appsure.fragment.RecognizeTextFragment"
-        android:label="RecognizeText"
-        tools:layout="@layout/fragment_recognize_text">
-        <action
-            android:id="@+id/action_go_to_CreatePolicyFragment2"
-            app:popUpTo="@id/policyPage2" />
-    </fragment>
+        tools:layout="@layout/fragment_create_policy2" />
 </navigation>

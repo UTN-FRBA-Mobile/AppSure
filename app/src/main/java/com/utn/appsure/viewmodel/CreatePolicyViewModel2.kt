@@ -45,31 +45,4 @@ class CreatePolicyViewModel2(private val createPolicyUseCase: CreatePolicyUseCas
                 .show()
         }
     }
-
-
-    //Esto es la parte del ReconizeText
-    val resultRecognizeText = MutableLiveData<String>("")
-
-    //probar sacando esto
-  /*  init{
-        resultRecognizeText.value=""
-    }
-*/
-    fun changeResult(newResult: String){
-        if(!newResult.isNullOrBlank()){
-            resultRecognizeText.value=newResult
-        }
-    }
-
-    fun goToRecognizeText(v: View){
-        v.findNavController().navigate(R.id.action_go_to_RecognizeText)
-    }
-
-    fun goToCreatePolicy2(v: View) {
-        if(!resultRecognizeText.value.isNullOrBlank()){
-            patent.set(resultRecognizeText.value)
-        }
-        v.findNavController().navigate(R.id.action_go_to_CreatePolicyFragment2)
-    }
-
 }

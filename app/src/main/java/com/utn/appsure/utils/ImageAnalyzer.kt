@@ -5,8 +5,6 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
-import com.utn.appsure.fragment.RecognizeTextFragment
-import kotlinx.android.synthetic.main.fragment_recognize_text.*
 
 class ImageAnalyzer : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallback()  {
 

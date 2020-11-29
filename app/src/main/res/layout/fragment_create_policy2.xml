@@ -17,31 +17,28 @@
         android:layout_margin="12dp"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/txtPatent"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:hint="Patente"
                 android:inputType="text"
                 android:text="@={viewmodel.patent}"
-                android:layout_alignParentLeft="true"/>
+                android:layout_weight="1"/>
 
             <ImageButton
                 android:id="@+id/btnRcognizeText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxHeight="2dp"
-                android:maxWidth="2dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/celular_escaneando_patente"
-                android:onClick="@{viewmodel::goToRecognizeText}"/>
+                android:layout_height="match_parent"
+                android:src="@drawable/celular_escaneando_patente"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
 

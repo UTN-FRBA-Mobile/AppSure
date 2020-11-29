@@ -26,6 +26,9 @@
         <activity
             android:name=".activity.PolicyActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RecognizeTextActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
