@@ -5,6 +5,7 @@ import com.utn.appsure.db.PolicyRepository
 import com.utn.appsure.service.PolicyService
 import com.utn.appsure.usecase.CreatePolicyUseCase
 import com.utn.appsure.usecase.GetPoliciesUseCase
+import com.utn.appsure.usecase.GetPolicyUseCase
 import com.utn.appsure.viewmodel.*
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -18,9 +19,11 @@ val appModule = module {
     viewModel { CreatePolicyViewModel() }
     viewModel { CreatePolicyViewModel2(get()) }
     viewModel { MapViewModel(get()) }
+    viewModel { PolicyDetailViewModel(get()) }
 
     single { PolicyService(get()) }
     single { PolicyRepository(get()) }
     single { GetPoliciesUseCase(get(), get()) }
     single { CreatePolicyUseCase(get(), get()) }
+    single { GetPolicyUseCase(get()) }
 }
