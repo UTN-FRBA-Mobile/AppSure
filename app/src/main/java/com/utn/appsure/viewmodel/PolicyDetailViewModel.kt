@@ -10,7 +10,12 @@ import com.utn.appsure.R
 import com.utn.appsure.model.Policy
 import com.utn.appsure.usecase.GetPoliciesUseCase
 
-class PolicyDetailViewModel () : ViewModel() {
-    lateinit var policyLicenseID : String
+class PolicyDetailViewModel (private var policyUseCase: GetPoliciesUseCase) : ViewModel() {
+    val policy = MutableLiveData<Policy>()
+    val policyLicenseID : String = "license 1"
+
+    fun getPolicy(){
+        policyUseCase.execute(policyLicenseID) {policy}
+    }
 
 }
