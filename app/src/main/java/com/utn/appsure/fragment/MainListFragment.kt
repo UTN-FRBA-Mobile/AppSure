@@ -62,6 +62,10 @@ class MainListFragment() : Fragment(), PolicyAdapter.OnPolicyItemClickListener {
         viewModel.policies.observe(viewLifecycleOwner, Observer {
             viewAdapter.myDataset = it
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
         viewModel.getPolicies()
     }
 

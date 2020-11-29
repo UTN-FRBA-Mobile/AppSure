@@ -11,18 +11,98 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/label_test"
+        <EditText
+            android:id="@+id/txtPatent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:gravity="top|center"
-            android:text="@{viewmodel.createPolicyText}" />
+            android:hint="Patente"
+            android:inputType="text"
+            android:text="@={viewmodel.patent}" />
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <EditText
+                android:id="@+id/txtBrand"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:hint="Marca"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.brand}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <EditText
+                android:id="@+id/txtModel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:hint="Modelo"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.model}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <EditText
+                android:id="@+id/txtYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:hint="Año"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.year}" />
+
+            <EditText
+                android:id="@+id/txtColour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Color"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.colour}" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btnGeneratePolicy"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorPrimary"
+                android:text="Crear Póliza"
+                android:textColor="#FFFFFF" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </layout>
