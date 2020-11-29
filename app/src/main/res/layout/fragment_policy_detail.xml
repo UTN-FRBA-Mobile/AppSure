@@ -53,13 +53,13 @@
         </LinearLayout>
 
 
-        <EditText
+        <TextView
             android:id="@+id/txtPatent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:textSize="20sp"
             android:hint="Patente "
-            android:inputType="text"
             android:text="@={viewmodel.patent}" />
 
         <LinearLayout
@@ -67,14 +67,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp">
 
-            <EditText
+            <TextView
                 android:id="@+id/txtBrand"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start"
+                android:textSize="20sp"
                 android:hint="Marca"
-                android:inputType="text"
                 android:selectAllOnFocus="true"
                 android:text="@={viewmodel.brand}" />
         </LinearLayout>
@@ -84,14 +84,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp">
 
-            <EditText
+            <TextView
                 android:id="@+id/txtModel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start"
+                android:textSize="20sp"
                 android:hint="Modelo"
-                android:inputType="text"
                 android:selectAllOnFocus="true"
                 android:text="@={viewmodel.model}" />
         </LinearLayout>
@@ -101,24 +101,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp">
 
-            <EditText
+            <TextView
                 android:id="@+id/txtYear"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start"
+                android:textSize="20sp"
                 android:hint="Año"
-                android:inputType="number"
                 android:selectAllOnFocus="true"
                 android:text="@={viewmodel.year}" />
 
-            <EditText
+            <TextView
                 android:id="@+id/txtColour"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="20sp"
                 android:hint="Color"
-                android:inputType="text"
                 android:selectAllOnFocus="true"
                 android:text="@={viewmodel.colour}" />
         </LinearLayout>
