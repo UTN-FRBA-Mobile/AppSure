@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.utn.appsure.databinding.FragmentCreatePolicy2Binding
 import com.utn.appsure.viewmodel.CreatePolicyViewModel2
@@ -15,7 +16,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreatePolicyFragment2 : Fragment() {
 
-    private val viewModel by viewModel<CreatePolicyViewModel2>()
+    //private val viewModel by viewModel<CreatePolicyViewModel2>()
+    private val viewModel: CreatePolicyViewModel2 by activityViewModels()
     private lateinit var binding: FragmentCreatePolicy2Binding
 
     override fun onCreateView(

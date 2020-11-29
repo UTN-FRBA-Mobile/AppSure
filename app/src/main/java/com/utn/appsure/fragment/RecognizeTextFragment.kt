@@ -15,8 +15,10 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.utn.appsure.databinding.FragmentRecognizeTextBinding
 import com.utn.appsure.utils.ImageAnalyzer
+import com.utn.appsure.viewmodel.CreatePolicyViewModel2
 import com.utn.appsure.viewmodel.RecognizeTextViewModel
 import kotlinx.android.synthetic.main.fragment_recognize_text.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,7 +27,8 @@ import java.util.concurrent.Executors
 
 class RecognizeTextFragment : Fragment() {
 
-    private val viewModel by viewModel<RecognizeTextViewModel>()
+    //private val viewModel by viewModel<RecognizeTextViewModel>()
+    private val viewModel: CreatePolicyViewModel2 by activityViewModels()
     private lateinit var binding: FragmentRecognizeTextBinding
 
 
@@ -64,7 +67,6 @@ class RecognizeTextFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         recognizeText.listener={text->
-            println("Lo que se pudo leer de la imagen es el siguiente texto: "+text) //ToDo: solo es para mostrar por consola, no deberia ir
             viewModel.changeResult(text)
         }
 

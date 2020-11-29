@@ -2,9 +2,12 @@ package com.utn.appsure.viewmodel
 
 import android.app.AlertDialog
 import android.content.Context
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import com.utn.appsure.R
 import com.utn.appsure.model.Policy
 import com.utn.appsure.usecase.CreatePolicyUseCase
 
@@ -42,4 +45,31 @@ class CreatePolicyViewModel2(private val createPolicyUseCase: CreatePolicyUseCas
                 .show()
         }
     }
+
+
+    //Esto es la parte del ReconizeText
+    val resultRecognizeText = MutableLiveData<String>("")
+
+    //probar sacando esto
+  /*  init{
+        resultRecognizeText.value=""
+    }
+*/
+    fun changeResult(newResult: String){
+        if(!newResult.isNullOrBlank()){
+            resultRecognizeText.value=newResult
+        }
+    }
+
+    fun goToRecognizeText(v: View){
+        v.findNavController().navigate(R.id.action_go_to_RecognizeText)
+    }
+
+    fun goToCreatePolicy2(v: View) {
+        if(!resultRecognizeText.value.isNullOrBlank()){
+            patent.set(resultRecognizeText.value)
+        }
+        v.findNavController().navigate(R.id.action_go_to_CreatePolicyFragment2)
+    }
+
 }

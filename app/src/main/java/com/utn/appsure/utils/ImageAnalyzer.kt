@@ -21,7 +21,7 @@ class ImageAnalyzer : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallba
 
             val recognizer = TextRecognition.getClient()
 
-            val result = recognizer.process(image)
+            recognizer.process(image)
                 .addOnSuccessListener { visionText ->
                     //visionText tiene el resultado del TextRecognition
                     val resultText = visionText.text    //visionText.text devuelve el resultado total en un string, es decir une todos los bloques con su propio texto en uno solo

@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.utn.appsure.viewmodel.RecognizeTextViewModel" />
+            type="com.utn.appsure.viewmodel.CreatePolicyViewModel2" />
 
     </data>
 
