@@ -33,5 +33,10 @@
         android:id="@+id/policy_detail"
         android:name="com.utn.appsure.fragment.PolicyDetailFragment"
         android:label="PolicyDetail"
-        tools:layout="@layout/fragment_policy_detail" />
+        tools:layout="@layout/fragment_policy_detail">
+        <argument
+            android:name="license"
+            android:defaultValue="@null"
+            app:argType="string" />
+    </fragment>
 </navigation>
