@@ -7,19 +7,19 @@ import com.utn.appsure.model.Policy
 import com.utn.appsure.usecase.GetPolicyUseCase
 
 class PolicyDetailViewModel(private var policyUseCase: GetPolicyUseCase) : ViewModel() {
-    var patent = ObservableField<String>()
-    var brand = ObservableField<String>()
-    var model = ObservableField<String>()
-    var year = ObservableField<String>()
-    var colour = ObservableField<String>()
+    val patent = ObservableField<String>()
+    val brand = ObservableField<String>()
+    val model = ObservableField<String>()
+    val year = ObservableField<String>()
+    val colour = ObservableField<String>()
 
     fun getPolicy(policyLicenseID: String) {
         policyUseCase.execute(policyLicenseID) {
-            patent = ObservableField(it?.license.toString())
-            brand = ObservableField(it?.brand.toString())
-            model = ObservableField(it?.model.toString())
-            year = ObservableField(it?.year.toString())
-            colour = ObservableField(it?.colour.toString())
+            patent.set("Patente: ${it?.license}")
+            brand.set("Marca: ${it?.brand}")
+            model.set("Modelo: ${it?.model}")
+            year.set("Año: ${it?.year}")
+            colour.set("Color: ${it?.colour}")
         }
 
     }
