@@ -5,8 +5,6 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
-import com.utn.appsure.fragment.RecognizeTextFragment
-import kotlinx.android.synthetic.main.fragment_recognize_text.*
 
 class ImageAnalyzer : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallback()  {
 
@@ -21,7 +19,7 @@ class ImageAnalyzer : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallba
 
             val recognizer = TextRecognition.getClient()
 
-            val result = recognizer.process(image)
+            recognizer.process(image)
                 .addOnSuccessListener { visionText ->
                     //visionText tiene el resultado del TextRecognition
                     val resultText = visionText.text    //visionText.text devuelve el resultado total en un string, es decir une todos los bloques con su propio texto en uno solo
@@ -32,7 +30,7 @@ class ImageAnalyzer : ImageAnalysis.Analyzer, ImageCapture.OnImageCapturedCallba
                             listener?.invoke(resultText)
                         }
                     }else{
-                        listener?.invoke("No se pudo reconocer el texto") // ToDo: esto es solo para probar el callback en el emulador, luego borrarlo
+                       // listener?.invoke("No se pudo reconocer el texto") //esto es solo para probar el callback en el emulador, para que arroje un resultado aunque no se pueda leer un texto
                     }
                 }
                 .addOnFailureListener { e ->

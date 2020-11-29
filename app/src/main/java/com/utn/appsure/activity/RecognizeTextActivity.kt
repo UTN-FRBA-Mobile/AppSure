@@ -1,32 +1,25 @@
-package com.utn.appsure.fragment
+package com.utn.appsure.activity
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import com.utn.appsure.databinding.FragmentRecognizeTextBinding
+import com.utn.appsure.R
 import com.utn.appsure.utils.ImageAnalyzer
-import com.utn.appsure.viewmodel.RecognizeTextViewModel
-import kotlinx.android.synthetic.main.fragment_recognize_text.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlinx.android.synthetic.main.activity_recognize_text.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class RecognizeTextFragment : Fragment() {
 
-    private val viewModel by viewModel<RecognizeTextViewModel>()
-    private lateinit var binding: FragmentRecognizeTextBinding
+class RecognizeTextActivity : AppCompatActivity() {
 
 
     private lateinit var cameraExecutor: ExecutorService
@@ -34,20 +27,9 @@ class RecognizeTextFragment : Fragment() {
     private var imageAnalyzer: ImageAnalysis? = null
     private val recognizeText: ImageAnalyzer = ImageAnalyzer()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentRecognizeTextBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewmodel = viewModel
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_recognize_text)
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -59,13 +41,18 @@ class RecognizeTextFragment : Fragment() {
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        btnAcceptResult.setOnClickListener { respondIntent(resultImageAnalizer.text.toString()) }
+
     }
+
+
+
 
     override fun onStart() {
         super.onStart()
-        recognizeText.listener={text->
-            println("Lo que se pudo leer de la imagen es el siguiente texto: "+text) //ToDo: solo es para mostrar por consola, no deberia ir
-            viewModel.changeResult(text)
+        recognizeText.listener={ text->
+            resultImageAnalizer.text = text
         }
 
     }
@@ -77,27 +64,31 @@ class RecognizeTextFragment : Fragment() {
 
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray) {
+        IntArray
+    ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
                 startCamera()
             } else {
-                Toast.makeText(this.context,
+                Toast.makeText(
+                    this,
                     "Camera permissions not granted by the user.",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
-            this.requireContext(), it) == PackageManager.PERMISSION_GRANTED
+            this, it
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
 
 
     private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this.requireContext())
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener(Runnable {
             // Used to bind the lifecycle of cameras to the lifecycle owner
@@ -117,7 +108,7 @@ class RecognizeTextFragment : Fragment() {
             imageAnalyzer = ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST) //STRATEGY_KEEP_ONLY_LATEST es para que sea mas performante, y no realice bloqueo
                 .build()
-                .also{
+                .also {
                     it.setAnalyzer(cameraExecutor, recognizeText)
                 }
 
@@ -128,23 +119,30 @@ class RecognizeTextFragment : Fragment() {
 
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageAnalyzer)   // de esta maner ejecuta el codigo analyze del ImageAnalyzer
+                    this, cameraSelector, preview, imageAnalyzer
+                )   // de esta maner ejecuta el codigo analyze del ImageAnalyzer
 
-            } catch(exc: Exception) {
+            } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
 
-        }, ContextCompat.getMainExecutor(this.context))
+        }, ContextCompat.getMainExecutor(this))
     }
 
 
+    private fun respondIntent(result: String){
+        val returnIntent = Intent()
+        returnIntent.putExtra("result", result)
+        setResult(RESULT_OK, returnIntent)
+        finish()
+    }
 
 
     companion object{
         private const val TAG = "CameraXBasic"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-        fun newInstance() = RecognizeTextFragment()
+        fun newInstance() = RecognizeTextActivity()
     }
 
 }

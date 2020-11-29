@@ -17,14 +17,32 @@
         android:layout_margin="12dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/txtPatent"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Patente"
-            android:inputType="text"
-            android:text="@={viewmodel.patent}" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtPatent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Patente"
+                android:inputType="text"
+                android:text="@={viewmodel.patent}"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/btnRcognizeText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/escaneando_patente"
+                android:tooltipText="Escanear patente"
+                android:background="@drawable/recognize_text_button_start"/>
+
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

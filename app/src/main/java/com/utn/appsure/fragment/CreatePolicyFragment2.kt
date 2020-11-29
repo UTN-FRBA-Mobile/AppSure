@@ -1,5 +1,7 @@
 package com.utn.appsure.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +11,17 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.utn.appsure.activity.RecognizeTextActivity
 import com.utn.appsure.databinding.FragmentCreatePolicy2Binding
 import com.utn.appsure.viewmodel.CreatePolicyViewModel2
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class CreatePolicyFragment2 : Fragment() {
 
     private val viewModel by viewModel<CreatePolicyViewModel2>()
     private lateinit var binding: FragmentCreatePolicy2Binding
+    private val LAUNCH_RECOGNIZE_TEXT = 555
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +36,7 @@ class CreatePolicyFragment2 : Fragment() {
             if (it) activity?.finish()
         })
         binding.btnGeneratePolicy.setOnClickListener { createBiometricPrompt() }
+        binding.btnRcognizeText.setOnClickListener{starRecognizeText()}
         return binding.root
     }
 
@@ -64,4 +70,22 @@ class CreatePolicyFragment2 : Fragment() {
 
         biometricPrompt?.authenticate(promptInfo)
     }
+
+    private fun starRecognizeText(){
+        val intent = Intent(this.context, RecognizeTextActivity::class.java)
+        startActivityForResult(intent,LAUNCH_RECOGNIZE_TEXT)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==LAUNCH_RECOGNIZE_TEXT){
+            if(resultCode== Activity.RESULT_OK){
+                var recognizeTextResult = data?.getStringExtra("result")
+                if(!recognizeTextResult.isNullOrEmpty()){
+                    viewModel.patent.set(recognizeTextResult)
+                }
+            }
+        }
+    }
+
 }

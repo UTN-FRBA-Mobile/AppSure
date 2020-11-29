@@ -2,9 +2,12 @@ package com.utn.appsure.viewmodel
 
 import android.app.AlertDialog
 import android.content.Context
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import com.utn.appsure.R
 import com.utn.appsure.model.Policy
 import com.utn.appsure.usecase.CreatePolicyUseCase
 
