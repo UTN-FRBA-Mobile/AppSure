@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
         <import type="android.view.View" />
@@ -9,170 +11,118 @@
             type="com.utn.appsure.viewmodel.PolicyDetailViewModel" />
 
     </data>
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/label_test"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/policy_license"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Datos"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/policy_poster"
+                android:layout_width="187dp"
+                android:layout_height="62dp"
+                android:layout_weight="1"
+                android:src="@drawable/car" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/txtPatent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:gravity="center|top"/>
-
-
-        <TextView
-            android:id="@+id/txtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Email" />
-
-
-        <TextView
-            android:id="@+id/txtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:text="Nombre"
-            android:selectAllOnFocus="true" />
-
-        <TextView
-            android:id="@+id/txtLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="95dp"
-            android:text="Apellido"
-            android:selectAllOnFocus="true" />
+            android:hint="Patente "
+            android:inputType="text"
+            android:text="@={viewmodel.patent}" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="130dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
-            <TextView
-                android:id="@+id/txtDNI"
+            <EditText
+                android:id="@+id/txtBrand"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="start"
-                android:text="DNI"
-                android:selectAllOnFocus="true" />
-
-            <TextView
-                android:id="@+id/txtCP"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="Código postal"
-                android:selectAllOnFocus="true" />
+                android:hint="Marca"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.brand}" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="165dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
-            <TextView
-                android:id="@+id/txtStreet"
+            <EditText
+                android:id="@+id/txtModel"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="start"
-                android:text="Calle"
-                android:selectAllOnFocus="true" />
-
-            <TextView
-                android:id="@+id/txtStreetNumber"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="Altura"
-                android:selectAllOnFocus="true" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtLocalidad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="195dp"
-            android:text="Localidad"
-            android:selectAllOnFocus="true" />
-
-        <TextView
-            android:id="@+id/txtProvince"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="230dp"
-            android:text="Provincia"
-            android:selectAllOnFocus="true" />
-
-        <TextView
-            android:id="@+id/txtMarca"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="265dp"
-            android:text="Marca"
-            android:selectAllOnFocus="true" />
-
-        <TextView
-            android:id="@+id/txtModelo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:text="Modelo"
-            android:selectAllOnFocus="true" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="335dp">
-
-            <TextView
-                android:id="@+id/txtAnio"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Año"
-                android:selectAllOnFocus="true" />
-
-            <TextView
-                android:id="@+id/txtColor"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="Color"
-                android:selectAllOnFocus="true" />
+                android:hint="Modelo"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.model}" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="370dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
-            <TextView
-                android:id="@+id/txtPatente"
+            <EditText
+                android:id="@+id/txtYear"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="start"
-                android:text="Patente"
-                android:selectAllOnFocus="true" />
+                android:hint="Año"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.year}" />
 
-            <TextView
-                android:id="@+id/policy_license"
+            <EditText
+                android:id="@+id/txtColour"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="Nro Poliza"
-                android:selectAllOnFocus="true" />
+                android:layout_weight="1"
+                android:hint="Color"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:text="@={viewmodel.colour}" />
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </layout>
