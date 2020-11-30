@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.utn.appsure.R
+import com.utn.appsure.activity.MainActivity
 import com.utn.appsure.activity.PolicyActivity
 import com.utn.appsure.adapter.PolicyAdapter
 import com.utn.appsure.model.Policy
@@ -52,12 +53,20 @@ class MainListFragment() : Fragment(), PolicyAdapter.OnPolicyItemClickListener {
         }
 
         create_policy_fab.setOnClickListener {
-            startActivity(
-                Intent(
-                    activity,
-                    PolicyActivity::class.java
-                )
-            )
+
+//            activity?.let {
+//                it as MainActivity
+//                if (!it.checkPermissions())
+//                    it.startLocationPermissionRequest()
+//                else{
+                    startActivity(
+                        Intent(
+                            activity,
+                            PolicyActivity::class.java
+                        )
+                    )
+//                }
+//            }
         }
         viewModel.policies.observe(viewLifecycleOwner, Observer {
             viewAdapter.myDataset = it
