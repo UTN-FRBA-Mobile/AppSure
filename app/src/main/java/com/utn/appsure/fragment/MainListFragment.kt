@@ -23,7 +23,6 @@ class MainListFragment() : Fragment(), PolicyAdapter.OnPolicyItemClickListener {
 
     private val viewModel by viewModel<MainListViewModel>()
     private lateinit var recyclerView: RecyclerView
-    private val policyDetailViewModel by viewModel<PolicyDetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -20,25 +20,29 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
-    private val viewModel by viewModel<MapViewModel>()
 
+    private val viewModel by viewModel<MapViewModel>()
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var mMap: GoogleMap
     private var mapInitiated = false
+    var license: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        license = arguments?.getString("license")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_map, container, false)
-
         mapFragment = SupportMapFragment.newInstance()
-
         val transaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.googleMap, mapFragment)
         transaction.commit()
-
         return rootView
     }
 
@@ -47,7 +51,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         viewModel.policies.observe(viewLifecycleOwner, Observer {
             this.loadData()
         })
-        viewModel.getPolicies()
+
+        if (license.isNullOrEmpty()) {
+            viewModel.getPolicies()
+        } else {
+            viewModel.getPolicy(license!!)
+        }
 
         mapFragment.getMapAsync(this)
     }
