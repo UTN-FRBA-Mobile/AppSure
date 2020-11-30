@@ -1,5 +1,6 @@
 package com.utn.appsure.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +16,8 @@ import com.utn.appsure.activity.RecognizeTextActivity
 import com.utn.appsure.databinding.FragmentCreatePolicy2Binding
 import com.utn.appsure.viewmodel.CreatePolicyViewModel2
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 
 class CreatePolicyFragment2 : Fragment() {
@@ -22,6 +25,8 @@ class CreatePolicyFragment2 : Fragment() {
     private val viewModel by viewModel<CreatePolicyViewModel2>()
     private lateinit var binding: FragmentCreatePolicy2Binding
     private val LAUNCH_RECOGNIZE_TEXT = 555
+
+    private var mFusedLocationClient: FusedLocationProviderClient? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +42,13 @@ class CreatePolicyFragment2 : Fragment() {
         })
         binding.btnGeneratePolicy.setOnClickListener { createBiometricPrompt() }
         binding.btnRcognizeText.setOnClickListener{starRecognizeText()}
+
+        activity?.let {
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(it)
+        }
+
+        getLastLocation()
+
         return binding.root
     }
 
@@ -86,6 +98,25 @@ class CreatePolicyFragment2 : Fragment() {
                 }
             }
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLastLocation() {
+        activity?.let{
+            mFusedLocationClient!!.lastLocation
+                .addOnCompleteListener(it) { task ->
+                    if (task.isSuccessful && task.result != null) {
+                        var mLastLocation = task.result
+
+                        val lat = (mLastLocation )!!.latitude
+                        val lon = (mLastLocation )!!.longitude
+
+                        viewModel.lat.value = lat
+                        viewModel.lon.value = lon
+                    }
+                }
+        }
+
     }
 
 }

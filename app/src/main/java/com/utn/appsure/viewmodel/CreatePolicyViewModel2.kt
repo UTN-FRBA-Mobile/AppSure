@@ -19,6 +19,8 @@ class CreatePolicyViewModel2(private val createPolicyUseCase: CreatePolicyUseCas
     val year = ObservableField<String>()
     val colour = ObservableField<String>()
     val finish = MutableLiveData(false)
+    val lat = MutableLiveData<Double>()
+    val lon = MutableLiveData<Double>()
 
     fun generatePolicy(c: Context) {
         createPolicyUseCase.execute(
@@ -27,7 +29,10 @@ class CreatePolicyViewModel2(private val createPolicyUseCase: CreatePolicyUseCas
                 brand.get() ?: "",
                 model.get() ?: "",
                 Integer.parseInt(year.get() ?: "2020"),
-                colour.get() ?: "", 0, 0.0, 0.0
+                colour.get() ?: "",
+                0,
+                lat.value ?: 0.0,
+                lon.value ?: 0.0
             )
         ) {
             val builder = AlertDialog.Builder(c).setCancelable(false)
