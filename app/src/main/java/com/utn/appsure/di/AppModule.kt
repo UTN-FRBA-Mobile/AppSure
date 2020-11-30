@@ -18,7 +18,7 @@ val appModule = module {
     viewModel { MainListViewModel(get()) }
     viewModel { CreatePolicyViewModel() }
     viewModel { CreatePolicyViewModel2(get()) }
-    viewModel { MapViewModel(get()) }
+    viewModel { MapViewModel(get(),get()) }
     viewModel { PolicyDetailViewModel(get()) }
 
     single { PolicyService(get()) }
