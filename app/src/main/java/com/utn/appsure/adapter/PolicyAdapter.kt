@@ -49,7 +49,9 @@ class PolicyAdapter(var clickListener: OnPolicyItemClickListener) :
 
         fun bindPolicy(policy: Policy) {
             viewPolicyLicense.text = policy.license
-            policy.poster?.let { viewPolicyPoster.setImageResource(it) }
+            if (policy.poster != 0) {
+                policy.poster?.let { viewPolicyPoster.setImageResource(it) }
+            }
             itemView.setOnClickListener { clickListener.onItemClick(policy) }
         }
     }
